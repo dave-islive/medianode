@@ -1,9 +1,16 @@
-var Promise = require('bluebird');
+var Promise = require('bluebird'),
+    omdb    = require('omdb');
 
 var IMDBService = {
   search: function (search) {
     return new Promise(function (resolve, reject) {
-      resolve('not implemented yet')
+      omdb(search, function (error, result) {
+        if (error) {
+          return reject(error);
+        }
+
+        resolve(result);
+      });
     });
   }
 };
